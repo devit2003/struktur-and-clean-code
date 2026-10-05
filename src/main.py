@@ -36,14 +36,9 @@ def main() -> None:
     except json.JSONDecodeError:
         logger.error("JSON tidak valid: %s", args.path)
         return
-
-    cleaned_texts = clean_texts(documents)
-
-    logger.info("Jumlah dokumen: %d", len(cleaned_texts))
-
-    for text in cleaned_texts:
-        print(text)
-
+    except ValueError as error:
+        logger.error("Struktur JSON tidak valid: %s", error)
+        return
 
 if __name__ == "__main__":
     main()
